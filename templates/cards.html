@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .container{
+            width: 90%;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, auto);
+            grid-gap: 20px;
+            padding: 20px 0;
+        }
+        .card{
+            /* width: 30%; */
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            color: #333;
+            padding: 10px;
+        }
+        .card_img {
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        .card_uzumPay {
+            color: indigo;
+        }
+        .card_price {
+            font-weight: bold;
+        }
+        .card_splitText {
+            display: inline-flex;
+            border-radius: 5px;
+            background-color: yellow;
+            padding: 5px 10px;
+            width: 50%;
+        }
+        h3{
+            font-size: small;
+        }
+        .addProduct{
+            position: fixed;
+            top: 20%;
+            right: 0;
+            background-color: blue;
+            color: #fff;
+            padding: 10px;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .addProduct:hover{
+            background-color: #fff;
+            color: blue;
+            border: 2px solid blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/"><button class="addProduct">Dashboard</button></a>
+    </div>
+
+    <script>
+        let container = document.querySelector(".container")
+        fetch("/products")
+        .then(res => res.json())
+        .then(data =>{
+            data.forEach(item =>{
+                let card = document.createElement("div");
+                card.className = "card";
+                card.innerHTML = `
+                <img src="${item.image_url}" alt="Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm Rasm" class="card_img">
+                <p class="card_uzumPay">${item.uzum_pay}💶</p>
+                <p class="card_price">${item.pay}</p>
+                <p class="card_splitText">${item.split_pay} so'm/oyiga</p>
+                <h3>${item.title}</h3>
+                `   
+                container.appendChild(card)
+            })
+        })
+    </script>
+</body>
+</html>
